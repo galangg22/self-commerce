@@ -1,3 +1,338 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ================================================
+   Self-Commerce Design System
+   Modern Minimalism with Organic Accents
+   Premium Dark-Mode Experience
+   ================================================ */
+
+@layer base {
+    /* Import Nunito Sans from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
+    :root {
+        /* ---- Color Tokens ---- */
+        --sc-surface: #121411;
+        --sc-surface-dim: #121411;
+        --sc-surface-bright: #383a36;
+        --sc-surface-container-lowest: #0d0f0c;
+        --sc-surface-container-low: #1a1c19;
+        --sc-surface-container: #1e201d;
+        --sc-surface-container-high: #292b27;
+        --sc-surface-container-highest: #333532;
+        --sc-on-surface: #e3e3de;
+        --sc-on-surface-variant: #c2c9bb;
+        --sc-outline: #8c9387;
+        --sc-outline-variant: #42493e;
+        --sc-surface-tint: #a1d494;
+
+        --sc-primary: #a1d494;
+        --sc-primary-container: #2d5a27;
+        --sc-on-primary: #0a3909;
+        --sc-on-primary-container: #9dd090;
+
+        --sc-secondary: #ffb59e;
+        --sc-secondary-container: #7d3117;
+        --sc-on-secondary: #5c1902;
+        --sc-on-secondary-container: #ffa082;
+
+        --sc-tertiary: #cac6be;
+        --sc-tertiary-container: #525049;
+        --sc-on-tertiary: #32302a;
+
+        --sc-error: #ffb4ab;
+        --sc-error-container: #93000a;
+        --sc-on-error: #690005;
+        --sc-on-error-container: #ffdad6;
+
+        --sc-background: #121411;
+        --sc-on-background: #e3e3de;
+
+        /* ---- Spacing Tokens ---- */
+        --sc-space-xs: 4px;
+        --sc-space-base: 8px;
+        --sc-space-sm: 12px;
+        --sc-space-md: 24px;
+        --sc-space-lg: 48px;
+        --sc-space-xl: 80px;
+
+        /* ---- Border Radius ---- */
+        --sc-rounded-sm: 0.25rem;
+        --sc-rounded: 0.5rem;
+        --sc-rounded-md: 0.75rem;
+        --sc-rounded-lg: 1rem;
+        --sc-rounded-xl: 1.5rem;
+        --sc-rounded-full: 9999px;
+
+        /* ---- Elevation (Soft Bloom) ---- */
+        --sc-shadow-bloom: 0 0 20px 2px rgba(45, 90, 39, 0.15);
+        --sc-shadow-bloom-lg: 0 0 40px 4px rgba(45, 90, 39, 0.20);
+        --sc-shadow-bloom-secondary: 0 0 20px 2px rgba(255, 181, 158, 0.10);
+    }
+
+    /* Global base resets with design system */
+    html {
+        font-family: 'Nunito Sans', ui-sans-serif, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: var(--sc-background);
+        color: var(--sc-on-background);
+        line-height: 1.5;
+    }
+
+    /* Selection style */
+    ::selection {
+        background-color: rgba(45, 90, 39, 0.4);
+        color: #bcf0ae;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+        background: var(--sc-surface-container-lowest);
+    }
+    ::-webkit-scrollbar-thumb {
+        background: var(--sc-outline-variant);
+        border-radius: var(--sc-rounded-full);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--sc-outline);
+    }
+}
+
+@layer components {
+    /* ================================================
+       Card Component - Tonal Elevation + Soft Bloom
+       ================================================ */
+    .sc-card {
+        @apply bg-surface-container-high rounded-sc-lg p-sc-md;
+        box-shadow: var(--sc-shadow-bloom);
+        border: 1px solid var(--sc-outline-variant);
+        transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.2s ease;
+    }
+    .sc-card:hover {
+        transform: scale(1.02);
+        box-shadow: var(--sc-shadow-bloom-lg);
+        background-color: var(--sc-surface-container-highest);
+    }
+
+    /* ================================================
+       Button - Primary (Deep Forest)
+       ================================================ */
+    .sc-btn-primary {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-sc font-semibold text-label-md tracking-wide;
+        background-color: var(--sc-primary-container);
+        color: #ffffff;
+        border: 1px solid transparent;
+        transition: all 0.2s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    .sc-btn-primary::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(161,212,148,0.15), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    .sc-btn-primary:hover {
+        background-color: #367330;
+        transform: translateY(-1px);
+        box-shadow: var(--sc-shadow-bloom);
+    }
+    .sc-btn-primary:hover::before {
+        opacity: 1;
+    }
+    .sc-btn-primary:active {
+        transform: translateY(0);
+    }
+    .sc-btn-primary:focus-visible {
+        outline: 2px solid var(--sc-primary);
+        outline-offset: 2px;
+    }
+    .sc-btn-primary:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* ================================================
+       Button - Secondary (Deep Forest Outline + Terracotta hover)
+       ================================================ */
+    .sc-btn-secondary {
+        @apply inline-flex items-center justify-center px-6 py-3 rounded-sc font-semibold text-label-md tracking-wide;
+        background-color: transparent;
+        color: var(--sc-primary);
+        border: 1px solid var(--sc-primary-container);
+        transition: all 0.2s ease;
+    }
+    .sc-btn-secondary:hover {
+        border-color: var(--sc-secondary);
+        color: var(--sc-secondary);
+        box-shadow: var(--sc-shadow-bloom-secondary);
+        transform: translateY(-1px);
+    }
+    .sc-btn-secondary:active {
+        transform: translateY(0);
+    }
+    .sc-btn-secondary:focus-visible {
+        outline: 2px solid var(--sc-primary);
+        outline-offset: 2px;
+    }
+    .sc-btn-secondary:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    /* ================================================
+       Input Fields - Subtle dark fill + bottom border
+       ================================================ */
+    .sc-input {
+        @apply w-full px-4 py-3 rounded-sc text-body-md;
+        background-color: var(--sc-surface-container-high);
+        color: var(--sc-on-surface);
+        border: none;
+        border-bottom: 2px solid var(--sc-primary-container);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .sc-input::placeholder {
+        color: var(--sc-outline);
+    }
+    .sc-input:focus {
+        outline: none;
+        border-bottom-color: var(--sc-primary);
+        box-shadow: 0 2px 8px rgba(45, 90, 39, 0.15);
+    }
+
+    /* ================================================
+       Chips & Tags - Pill with low-opacity Secondary fill
+       ================================================ */
+    .sc-chip {
+        @apply inline-flex items-center px-4 py-1 text-label-sm tracking-wide;
+        border-radius: var(--sc-rounded-full);
+        background-color: rgba(255, 181, 158, 0.15);
+        color: var(--sc-secondary);
+        transition: background-color 0.2s ease;
+    }
+    .sc-chip:hover {
+        background-color: rgba(255, 181, 158, 0.25);
+    }
+
+    /* ================================================
+       Navigation Bar
+       ================================================ */
+    .sc-navbar {
+        background-color: var(--sc-surface-container-low);
+        border-bottom: 1px solid var(--sc-outline-variant);
+        backdrop-filter: blur(12px);
+    }
+
+    /* ================================================
+       Section Container
+       ================================================ */
+    .sc-container {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    @media (min-width: 768px) {
+        .sc-container {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+
+    /* ================================================
+       Hero gradient overlay
+       ================================================ */
+    .sc-hero-gradient {
+        background: radial-gradient(ellipse at 30% 20%, rgba(45, 90, 39, 0.20) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 80%, rgba(125, 49, 23, 0.10) 0%, transparent 50%),
+                    var(--sc-background);
+    }
+
+    /* ================================================
+       Glass Card (Glassmorphism variation)
+       ================================================ */
+    .sc-glass {
+        background: rgba(30, 32, 29, 0.7);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--sc-outline-variant);
+        border-radius: var(--sc-rounded-lg);
+    }
+
+    /* ================================================
+       Animated underline for links
+       ================================================ */
+    .sc-link {
+        @apply relative inline-block;
+        color: var(--sc-primary);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+    .sc-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--sc-secondary);
+        transition: width 0.3s ease;
+    }
+    .sc-link:hover {
+        color: var(--sc-secondary);
+    }
+    .sc-link:hover::after {
+        width: 100%;
+    }
+
+    /* ================================================
+       Badge
+       ================================================ */
+    .sc-badge {
+        @apply inline-flex items-center px-2 py-0.5 text-label-sm;
+        border-radius: var(--sc-rounded-full);
+        background-color: var(--sc-primary-container);
+        color: var(--sc-on-primary-container);
+    }
+
+    /* ================================================
+       Divider
+       ================================================ */
+    .sc-divider {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--sc-outline-variant), transparent);
+    }
+}
+
+@layer utilities {
+    /* Staggered animation delays */
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+    .delay-400 { animation-delay: 400ms; }
+    .delay-500 { animation-delay: 500ms; }
+    .delay-600 { animation-delay: 600ms; }
+
+    /* Gradient text */
+    .sc-text-gradient {
+        background: linear-gradient(135deg, var(--sc-primary), var(--sc-secondary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+}
